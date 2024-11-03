@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reapertura de Encantia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #61dafb;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: rgba(40, 44, 52, 0.8);
+        }
+
+        h1 {
+            color: #61dafb;
+        }
+
+        #countdown {
+            margin: 20px 0;
+        }
+
+        #timer {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Reapertura de Encantia!</h1>
+        <p>Nos complace anunciar que el servidor de Minecraft <strong>Encantia</strong> reabrirá el <strong>27 de noviembre a las 17:00</strong> (hora de España).</p>
+        <div id="countdown">
+            <h2>Cuenta regresiva:</h2>
+            <div id="timer">
+                <span id="days"></span> días
+                <span id="hours"></span> horas
+                <span id="minutes"></span> minutos
+                <span id="seconds"></span> segundos
+            </div>
+        </div>
+        <p>¡Esperamos verte allí!</p>
+    </div>
+
+    <script>
+        // Fecha de reapertura del servidor
+        const countDownDate = new Date("November 27, 2024 17:00:00 GMT+0100").getTime();
+
+        // Actualizar la cuenta regresiva cada 1 segundo
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Cálculo de días, horas, minutos y segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar la cuenta regresiva en el HTML
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // Si la cuenta regresiva ha terminado, mostrar un mensaje
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "¡El servidor ha reabierto!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
